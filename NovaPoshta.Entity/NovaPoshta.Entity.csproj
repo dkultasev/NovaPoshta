@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF2646ED-E486-43A0-8D38-F7E8E3ED94FC}</ProjectGuid>
+    <ProjectGuid>{5AD78EEC-E5C7-40F6-ADCA-33CBEF37E922}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NovaPoshta.Core</RootNamespace>
-    <AssemblyName>NovaPoshta.Core</AssemblyName>
+    <RootNamespace>NovaPoshta.Entity</RootNamespace>
+    <AssemblyName>NovaPoshta.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,27 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityLogic.cs" />
-    <Compile Include="JsonLogic.cs" />
-    <Compile Include="JsonRequestRoot.cs" />
-    <Compile Include="NovaPoshtaConfig.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Document.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestSharpExtensionMethods.cs" />
-    <Compile Include="RestSharpJsonNetSerializer.cs" />
-    <Compile Include="RootObject.cs" />
-    <Compile Include="WarehouseLogic.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cfg\novaposhta.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NovaPoshta.Entity\NovaPoshta.Entity.csproj">
-      <Project>{5ad78eec-e5c7-40f6-adca-33cbef37e922}</Project>
-      <Name>NovaPoshta.Entity</Name>
-    </ProjectReference>
+    <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
