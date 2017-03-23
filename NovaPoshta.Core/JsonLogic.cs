@@ -5,17 +5,34 @@ namespace NovaPoshta.Core
 {
     public class JsonLogic
     {
-        //private const string ApiKey = "fc6ccb0ad80b11ce020bdd6f97ecf28c";
-        private string _apiKey;
-
+        private readonly string _apiKey;
+        private readonly string _apiUrl = "https://api.novaposhta.ua/v2.0/json/";
         public JsonLogic()
         {
             _apiKey = new NovaPoshtaConfig().GetCfg().ApiKey;
         }
 
-        public IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var client = new RestClient($"http://testapi.novaposhta.ua/v2.0/json/{modelName}/{calledMethod}");
+            var result = new JsonLogic().GetObjectByRequest<T>(modelName, calledMethod, methodProperties);
+            return result[0].data;
+        }
+
+        public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
+        {
+            var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
+            if (result.errors != null && result.errors.Count > 0)
+            {
+                //throw new HttpResponseException();
+            }
+
+            return result.data[0];
+        }
+
+        private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
+        {
+            //var client = new RestClient($"{_apiUrl}/{modelName}/json/{modelName}/{calledMethod}");
+            var client = new RestClient(_apiUrl);
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
@@ -30,9 +47,11 @@ namespace NovaPoshta.Core
             if (result.StatusCode.IsSuccessStatusCode()) return result.Data;
             return result.Data;
         }
-        public RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
+
+        private RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var client = new RestClient($"http://testapi.novaposhta.ua/v2.0/json/{modelName}/{calledMethod}");
+            //var client = new RestClient($"{_apiUrl}/json/{modelName}/{calledMethod}");
+            var client = new RestClient(_apiUrl);
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
@@ -43,23 +62,10 @@ namespace NovaPoshta.Core
 
             };
             request.JsonSerializer = new RestSharpJsonNetSerializer();
-            //var json = JsonConvert.SerializeObject(jqr);
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            return client.Execute<RootObject<T>>(request).Data;
+            var result = client.Execute<RootObject<T>>(request).Data;
+            return result;
         }
-        public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
-        {
-            var result = new JsonLogic().GetObjectByRequest<T>(modelName, calledMethod, methodProperties);
-            return result[0].data;
-        }
-
-        public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
-        {
-            var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
-            return result.data[0];
-        }
-
-
     }
 }
