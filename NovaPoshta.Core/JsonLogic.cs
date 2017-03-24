@@ -9,8 +9,8 @@ namespace NovaPoshta.Core
     public class JsonLogic
     {
         private readonly string _apiKey;
-        private readonly string _apiUrl = "https://api.novaposhta.ua/v2.0/json/";
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
+        public readonly string ApiUrl = "https://api.novaposhta.ua/v2.0/json/";
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public JsonLogic()
         {
@@ -31,7 +31,7 @@ namespace NovaPoshta.Core
             var message = string.Join("\n", result.errors);
             var e = new ArgumentException(message);
 
-            _logger.Error(e);
+            Logger.Error(e);
             throw e;
         }
 
@@ -39,7 +39,7 @@ namespace NovaPoshta.Core
         private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             //var client = new RestClient($"{_apiUrl}/{modelName}/json/{modelName}/{calledMethod}");
-            var client = new RestClient(_apiUrl);
+            var client = new RestClient(ApiUrl);
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
@@ -58,7 +58,7 @@ namespace NovaPoshta.Core
         private RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             //var client = new RestClient($"{_apiUrl}/json/{modelName}/{calledMethod}");
-            var client = new RestClient(_apiUrl);
+            var client = new RestClient(ApiUrl);
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
