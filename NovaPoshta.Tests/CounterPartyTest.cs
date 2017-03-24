@@ -104,8 +104,8 @@ namespace NovaPoshta.Tests
         public void DeleteNonExistingCounterPartyTest()
         {
             var cl = new CounterPartyLogic();
-            var result = cl.DeleteConterparty(new Guid("db5c88d7-391c-11dd-90d9-001a92567626"));
-            int a = 0;
+            Assert.That(() => cl.DeleteConterparty(new Guid("db5c88d7-391c-11dd-90d9-001a92567626")),
+            Throws.TypeOf<ArgumentException>());
         }
 
     }

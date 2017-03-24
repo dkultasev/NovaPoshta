@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using NLog;
 using RestSharp;
 
 namespace NovaPoshta.Core
@@ -7,6 +10,8 @@ namespace NovaPoshta.Core
     {
         private readonly string _apiKey;
         private readonly string _apiUrl = "https://api.novaposhta.ua/v2.0/json/";
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         public JsonLogic()
         {
             _apiKey = new NovaPoshtaConfig().GetCfg().ApiKey;
@@ -21,13 +26,15 @@ namespace NovaPoshta.Core
         public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
-            if (result.errors != null && result.errors.Count > 0)
-            {
-                //throw new HttpResponseException();
-            }
+            if (result.errors == null || result.errors.Count <= 0) return result.data[0];
 
-            return result.data[0];
+            var message = string.Join("\n", result.errors);
+            var e = new ArgumentException(message);
+
+            _logger.Error(e);
+            throw e;
         }
+
 
         private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
