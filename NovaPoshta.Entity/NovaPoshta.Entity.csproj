@@ -43,7 +43,10 @@
     <Compile Include="City.cs" />
     <Compile Include="CounterParty.cs" />
     <Compile Include="CounterpartyContactPerson.cs" />
+    <Compile Include="Dictionary.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="IDictionary.cs" />
+    <Compile Include="PackList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RootObject.cs" />
     <Compile Include="Warehouse.cs" />
