@@ -28,7 +28,7 @@ namespace NovaPoshta.Tests
         {
             var dl = new DictionaryLogic();
             var result = dl.GetPackList(new PackList() { Width = 1000});
-            Assert.AreEqual(result.Count(), 1);
+            Assert.AreEqual(result.FirstOrDefault().Width, 1000);
         }
     }
 }

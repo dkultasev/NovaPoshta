@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using NovaPoshta.Core;
-using NovaPoshta.Entity;
 using NUnit.Framework;
 
 namespace NovaPoshta.Tests
 {
-    class CityTest
+    internal class CityTest
     {
-        //[Ignore("not for every run")]
         [Test]
-
         public void GetAllCitiesTest()
         {
             var cl = new CityLogic();
@@ -23,8 +19,16 @@ namespace NovaPoshta.Tests
         public void GetCityByRefTest()
         {
             var cl = new CityLogic();
-            var city = cl.GetCity(new { Ref = new Guid("ebc0eda9-93ec-11e3-b441-0050568002cf") });
+            var city = cl.GetCityByRef(new Guid("ebc0eda9-93ec-11e3-b441-0050568002cf"));
             Assert.AreEqual(city.FirstOrDefault().DescriptionRu, "Агрономичное");
+        }
+
+        [Test]
+        public void GetCityByNameTest()
+        {
+            var cl = new CityLogic();
+            var city = cl.GetCityByName("Одесса");
+            Assert.AreEqual(city.FirstOrDefault().DescriptionRu, "Одесса");
         }
     }
 }

@@ -23,6 +23,17 @@ namespace NovaPoshta.Core
                 });
         }
 
+        public Guid? GetSenderCounterpartyRef()
+        {
+            var counterParty = _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
+                new
+                {
+                    CounterpartyProperty = "Recipient",
+                    Page = 1
+                }).FirstOrDefault();
+            return counterParty?.Ref;
+        }
+
         public IEnumerable<CounterParty> GetCounterpartiesByCity(Guid cityRef)
         {
             return _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",

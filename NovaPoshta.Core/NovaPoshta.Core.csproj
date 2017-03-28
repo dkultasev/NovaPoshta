@@ -55,6 +55,7 @@
     <Compile Include="CityLogic.cs" />
     <Compile Include="CounterPartyLogic.cs" />
     <Compile Include="DictionaryLogic.cs" />
+    <Compile Include="DocumentLogic.cs" />
     <Compile Include="JsonLogic.cs" />
     <Compile Include="JsonRequestRoot.cs" />
     <Compile Include="NovaPoshtaConfig.cs" />

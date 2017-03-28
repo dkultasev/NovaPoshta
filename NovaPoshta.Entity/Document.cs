@@ -5,37 +5,21 @@ namespace NovaPoshta.Core
     public class Document
     {
         public Guid? Ref { get; set; }
-
-        public DateTime? DateTime
-        { get; set; }
-
-        public string DateTimeString
-        {
-            get { return this.DateTime != null ? this.DateTime.Value.ToString("dd.MM.yyyy") : ""; }
-            set { this.DateTime = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
-
-
+        public DateTime? DateTime { get; set; }
         public DateTime? PreferredDeliveryDate { get; set; }
-
-        public string PreferredDeliveryDateString
-        {
-            get { return this.PreferredDeliveryDate != null ? this.PreferredDeliveryDate.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.PreferredDeliveryDate = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public double Weight { get; set; }
-        public Nullable<short> SeatsAmount { get; set; }
+        public short? SeatsAmount { get; set; }
         public string IntDocNumber { get; set; }
-        public Nullable<decimal> Cost { get; set; }
-        public Nullable<System.Guid> CitySender { get; set; }
-        public Nullable<System.Guid> CityRecipient { get; set; }
-        public Nullable<System.Guid> State { get; set; }
-        public Nullable<System.Guid> SenderAddress { get; set; }
-        public Nullable<System.Guid> RecipientAddress { get; set; }
-        public Nullable<decimal> CostOnSite { get; set; }
+        public decimal? Cost { get; set; }
+        public Guid? CitySender { get; set; }
+        public Guid? CityRecipient { get; set; }
+        public Guid? State { get; set; }
+        public Guid? SenderAddress { get; set; }
+        public Guid? RecipientAddress { get; set; }
+        public decimal? CostOnSite { get; set; }
         public string PayerType { get; set; }
         public string PaymentMethod { get; set; }
-        public Nullable<decimal> AfterpaymentOnGoodsCost { get; set; }
+        public decimal? AfterpaymentOnGoodsCost { get; set; }
         public string CargoType { get; set; }
         public string PackingNumber { get; set; }
         public string AdditionalInformation { get; set; }
@@ -52,17 +36,7 @@ namespace NovaPoshta.Core
         public string DeliveryDateFrom { get; set; }
         public string Vip { get; set; }
         public DateTime? LastModificationDate { get; set; }
-        public string LastModificationDateString
-        {
-            get { return this.LastModificationDate != null ? this.LastModificationDate.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.LastModificationDate = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public DateTime? ReceiptDate { get; set; }
-        public string ReceiptDateString
-        {
-            get { return this.ReceiptDate != null ? this.ReceiptDate.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.ReceiptDate = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public string LoyaltyCard { get; set; }
         public string Sender { get; set; }
         public string ContactSender { get; set; }
@@ -82,11 +56,6 @@ namespace NovaPoshta.Core
         public string RecipientFullName { get; set; }
         public string RecipientPost { get; set; }
         public DateTime? RecipientDateTime { get; set; }
-        public string RecipientDateTimeString
-        {
-            get { return this.RecipientDateTime != null ? this.RecipientDateTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.RecipientDateTime = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public string RejectionReason { get; set; }
         public string CitySenderDescription { get; set; }
         public string CityRecipientDescription { get; set; }
@@ -100,29 +69,13 @@ namespace NovaPoshta.Core
         public int? ChangedDataEW { get; set; }
         public int? Fulfillment { get; set; }
         public DateTime? EstimatedDeliveryDate { get; set; }
-        public string EstimatedDeliveryDateString
-        {
-            get { return this.EstimatedDeliveryDate != null ? this.EstimatedDeliveryDate.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.EstimatedDeliveryDate = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public DateTime? DateLastUpdatedStatus { get; set; }
-        public string DateLastUpdatedStatusString
-        {
-            get { return this.DateLastUpdatedStatus != null ? this.DateLastUpdatedStatus.Value.ToString("yyyy-MM-dd hh:mm:ss") : ""; }
-            set { this.DateLastUpdatedStatus = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public DateTime? CreateTime { get; set; }
-        public string CreateTimeString
-        {
-            get { return CreateTime?.ToString("yyyy-MM-dd hh:mm:ss") ?? ""; }
-            set { this.CreateTime = (value.Equals("") ? (DateTime?)null : System.DateTime.Parse(value)); }
-        }
         public string ScanSheetNumber { get; set; }
         public string InfoRegClientBarcodes { get; set; }
         public int? StatePayId { get; set; }
         public string StatePayName { get; set; }
         public string BackwardDeliveryCargoType { get; set; }
-        //public virtual DocumentStatus DocumentStatus { get; set; }
         public double VolumeGeneral { get; set; }
         }
 }

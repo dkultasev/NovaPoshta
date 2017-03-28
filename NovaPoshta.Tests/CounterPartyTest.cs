@@ -9,11 +9,19 @@ namespace NovaPoshta.Tests
     public class CounterPartyTest
     {
         [Test]
-        public void GetSenderContactPersonsTest()
+        public void GetSenderContactPersonsByRefTest()
         {
             var cl = new CounterPartyLogic();
-            var result = cl.GetCounterpartyContactPersonsByCounterpartyRef(new Guid("361ce04b92c711e6a54a005056801333")).Count();
-            Assert.Greater(result,0);
+            var result = cl.GetCounterpartyContactPersonsByCounterpartyRef(new Guid("361ce04b92c711e6a54a005056801333"));
+            Assert.Greater(result.Count(), 0);
+        }
+
+        [Test]
+        public void GetSenderRefTest()
+        {
+            var cl = new CounterPartyLogic();
+            var result = cl.GetSenderCounterpartyRef();
+            Assert.AreEqual(result, new Guid("361ce04b92c711e6a54a005056801333"));
         }
 
         [Test]

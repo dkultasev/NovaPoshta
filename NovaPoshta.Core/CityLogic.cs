@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NovaPoshta.Entity;
 
 namespace NovaPoshta.Core
@@ -18,9 +19,13 @@ namespace NovaPoshta.Core
             return _jsonLogic.GetJsonData<City>("Address", "getCities", new { });
         }
 
-        public IEnumerable<City> GetCity(dynamic methodProperties)
+        public IEnumerable<City> GetCityByRef(Guid cityRef)
         {
-            return _jsonLogic.GetJsonData<City>("Address", "getCities", methodProperties);
+            return _jsonLogic.GetJsonData<City>("Address", "getCities", new {Ref = cityRef});
+        }
+        public IEnumerable<City> GetCityByName(string cityName)
+        {
+            return _jsonLogic.GetJsonData<City>("Address", "getCities", new { FindByString = cityName });
         }
     }
 }
