@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NLog;
 using RestSharp;
 
@@ -38,8 +37,8 @@ namespace NovaPoshta.Core
 
         private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            //var client = new RestClient($"{_apiUrl}/{modelName}/json/{modelName}/{calledMethod}");
             var client = new RestClient(ApiUrl);
+
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
@@ -48,6 +47,7 @@ namespace NovaPoshta.Core
                 calledMethod = calledMethod,
                 methodProperties = methodProperties
             };
+            request.JsonSerializer = new RestSharpJsonNetSerializer("yyyy-MM-dd HH:mm:ss");
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var result = client.Execute<List<RootObject<T>>>(request);
@@ -57,8 +57,8 @@ namespace NovaPoshta.Core
 
         private RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            //var client = new RestClient($"{_apiUrl}/json/{modelName}/{calledMethod}");
             var client = new RestClient(ApiUrl);
+
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
@@ -68,11 +68,12 @@ namespace NovaPoshta.Core
                 methodProperties = methodProperties
 
             };
-            request.JsonSerializer = new RestSharpJsonNetSerializer();
+            request.JsonSerializer = new RestSharpJsonNetSerializer("yyyy-MM-dd HH:mm:ss");
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var result = client.Execute<RootObject<T>>(request).Data;
             return result;
         }
+
     }
 }

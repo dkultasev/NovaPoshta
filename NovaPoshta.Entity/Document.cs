@@ -5,7 +5,7 @@ namespace NovaPoshta.Core
     public class Document
     {
         public Guid? Ref { get; set; }
-        public DateTime? DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public DateTime? PreferredDeliveryDate { get; set; }
         public double Weight { get; set; }
         public short? SeatsAmount { get; set; }
@@ -38,11 +38,11 @@ namespace NovaPoshta.Core
         public DateTime? LastModificationDate { get; set; }
         public DateTime? ReceiptDate { get; set; }
         public string LoyaltyCard { get; set; }
-        public string Sender { get; set; }
-        public string ContactSender { get; set; }
+        public Guid Sender { get; set; }
+        public Guid? ContactSender { get; set; }
         public string SendersPhone { get; set; }
-        public string Recipient { get; set; }
-        public string ContactRecipient { get; set; }
+        public Guid Recipient { get; set; }
+        public Guid ContactRecipient { get; set; }
         public string RecipientsPhone { get; set; }
         public string Redelivery { get; set; }
         public string SaturdayDeliveryString { get; set; }

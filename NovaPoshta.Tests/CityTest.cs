@@ -28,7 +28,7 @@ namespace NovaPoshta.Tests
         {
             var cl = new CityLogic();
             var city = cl.GetCityByName("Одесса");
-            Assert.AreEqual(city.FirstOrDefault().DescriptionRu, "Одесса");
+            Assert.AreEqual(city.DescriptionRu, "Одесса");
         }
     }
 }

@@ -15,14 +15,15 @@ namespace NovaPoshta.Core
         /// <summary>
         /// Default serializer
         /// </summary>
-        public RestSharpJsonNetSerializer()
+        public RestSharpJsonNetSerializer(string dateFormat)
         {
             ContentType = "application/json";
             _serializer = new Newtonsoft.Json.JsonSerializer
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 NullValueHandling = NullValueHandling.Include,
-                DefaultValueHandling = DefaultValueHandling.Include
+                DefaultValueHandling = DefaultValueHandling.Include,
+                DateFormatString = dateFormat
             };
         }
 
@@ -38,7 +39,7 @@ namespace NovaPoshta.Core
         /// <summary>
         /// Serialize the object as JSON
         /// </summary>
-        /// <param name="obj">Object to serialize</param>
+        /// <param name="obj">Object to serialize
         /// <returns>JSON as String</returns>
         public string Serialize(object obj)
         {

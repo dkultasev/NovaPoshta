@@ -11,8 +11,8 @@ namespace NovaPoshta.Tests
         public void GetTypesOfPayersTest()
         {
             var dl = new DictionaryLogic();
-            var result = dl.GetDictionary<Dictionary>("TypesOfPayers").Count();
-            Assert.Greater(result, 1);
+            var result = dl.GetDictionary<Dictionary>("TypesOfPayers");
+            Assert.Greater(result.Count(), 1);
         }
 
         [Test]
