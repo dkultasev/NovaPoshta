@@ -1,6 +1,6 @@
 ﻿namespace NovaPoshta.Entity
 {
-    public class Dictionary : IDictionary
+    public class Dictionary 
     {
         public string Description { get; set; }
         public string Ref { get; set; }

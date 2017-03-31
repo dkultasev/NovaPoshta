@@ -13,9 +13,9 @@ namespace NovaPoshta.Core
             _jsonLogic = new JsonLogic();
         }
 
-        public IEnumerable<IDictionary> GetDictionary<IDictionary>(string dictionary, dynamic param = null)
+        public IEnumerable<T> GetDictionary<T>(string dictionary, dynamic param = null)
         {
-            return _jsonLogic.GetJsonData<IDictionary>("Common", "get" + dictionary, param);
+            return _jsonLogic.GetJsonData<T>("Common", "get" + dictionary, param);
         }
 
         public IEnumerable<PackList> GetPackList(PackList param = null)
