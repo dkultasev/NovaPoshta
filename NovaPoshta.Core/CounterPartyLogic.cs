@@ -16,11 +16,20 @@ namespace NovaPoshta.Core
 
         public IEnumerable<CounterpartyContactPerson> GetCounterpartyContactPersonsByCounterpartyRef(Guid? counterPartyRef)
         {
-            return _jsonLogic.GetJsonData<CounterpartyContactPerson>("Counterparty", "getCounterpartyContactPersons",
+            var contacts = _jsonLogic.GetJsonData<CounterpartyContactPerson>("Counterparty",
+                "getCounterpartyContactPersons",
                 new
                 {
                     Ref = counterPartyRef.ToString()
                 });
+
+            return contacts;
+        }
+        public CounterpartyContactPerson GetCounterpartyFirstContactWithEmail(Guid? counterPartyRef)
+        {
+            var contact = GetCounterpartyContactPersonsByCounterpartyRef(counterPartyRef);
+
+            return contact.FirstOrDefault(con => !con.Email.Equals(""));
         }
 
         public Guid? GetSenderCounterpartyRef()
@@ -28,10 +37,10 @@ namespace NovaPoshta.Core
             var counterParty = _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
                 new
                 {
-                    CounterpartyProperty = "Recipient",
+                    CounterpartyProperty = "Sender",
                     Page = 1
-                }).FirstOrDefault();
-            return counterParty?.Ref;
+                });
+            return counterParty.FirstOrDefault()?.Ref;
         }
 
         public IEnumerable<CounterParty> GetCounterpartiesByCity(Guid cityRef)
@@ -52,15 +61,6 @@ namespace NovaPoshta.Core
 
             return _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
                 prop);
-        }
-
-        public IEnumerable<CounterpartyContactPerson> GetReciepentCounterPartyContactPersons(Guid counterPartyRef)
-        {
-            return _jsonLogic.GetJsonData<CounterpartyContactPerson>("Counterparty", "getCounterpartyContactPersons",
-                new
-                {
-                    Ref = counterPartyRef.ToString()
-                });
         }
 
         public CounterParty CreateConterparty(CounterParty counterparty)

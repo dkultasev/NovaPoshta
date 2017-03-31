@@ -36,7 +36,7 @@ namespace NovaPoshta.Tests
         public void GetCounterPartyContactPersonsTest()
         {
             var cl = new CounterPartyLogic();
-            var result = cl.GetReciepentCounterPartyContactPersons(new Guid("f5cb6305-37a8-11e6-a54a-005056801333")).Count();
+            var result = cl.GetCounterpartyContactPersonsByCounterpartyRef(new Guid("f5cb6305-37a8-11e6-a54a-005056801333")).Count();
             Assert.Greater(result, 10);
         }
 

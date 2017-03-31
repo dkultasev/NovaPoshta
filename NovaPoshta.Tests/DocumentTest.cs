@@ -9,6 +9,16 @@ namespace NovaPoshta.Tests
     internal class DocumentTest
     {
         [Test]
+        public void Test()
+        {
+            var counterPartyLogic = new CounterPartyLogic();
+
+            var cpaties = counterPartyLogic.GetCounterpartiesByCity(new Guid("8D5A980D-391C-11DD-90D9-001A92567626"));
+
+            int a = 0;
+        }
+
+        [Test]
         public void CreateNewDocumentTest()
         {
             var counterPartyLogic = new CounterPartyLogic();
@@ -16,6 +26,7 @@ namespace NovaPoshta.Tests
             var documentLogic = new DocumentLogic();
             var senderCityRef = cityLogic.GetCityByName("Одесса").Ref;
             var senderRef = counterPartyLogic.GetSenderCounterpartyRef();
+            var senderContact = counterPartyLogic.GetCounterpartyFirstContactWithEmail(senderRef).Ref;
 
             var recipientCityRef = cityLogic.GetCityByName("Киев").Ref;
             var recipientPhone = "0934502712";
@@ -36,8 +47,8 @@ namespace NovaPoshta.Tests
             {
                 Ref = null,
                 SendersPhone = "380934502711",
-                CitySender = senderCityRef, //new Guid("db5c88d0-391c-11dd-90d9-001a92567626"),
-                ContactSender = senderRef,
+                CitySender = senderCityRef,
+                ContactSender = senderContact,
                 ServiceType = "WarehouseDoors",
                 PayerType = "Sender",
                 PaymentMethod = "Cash",
@@ -50,14 +61,24 @@ namespace NovaPoshta.Tests
                 Cost = 123,
                 Sender = senderRef.Value,
                 SenderAddress = new Guid("5A39E590-E1C2-11E3-8C4A-0050568002CF"),
-                CityRecipient = new Guid("DB5C88D0-391C-11DD-90D9-001A92567626"),
+                CityRecipient = recipientCityRef,
                 Recipient = recipient.Ref.Value,
                 RecipientAddress = new Guid("7B422FA4-E1B8-11E3-8C4A-0050568002CF"),
-                ContactRecipient = recipient.Ref.Value,
+                ContactRecipient = recipient.ContactPerson.data[0].Ref.Value,
                 RecipientsPhone = recipientPhone
             };
             var result = documentLogic.CreateInternetDocument(document);
-            int a = 0;
+            Assert.Greater(result.CostOnSite, 1);
+        }
+
+        [Test]
+        public void GetDocumentByTTNTest()
+        {
+            var documentLogic = new DocumentLogic();
+            var ttn = "20450037372708";
+            var result = documentLogic.GetDocumentByTTN(ttn);
+
+            Assert.AreEqual(result.IntDocNumber, ttn);
         }
     }
 }
