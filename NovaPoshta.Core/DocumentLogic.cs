@@ -31,5 +31,10 @@ namespace NovaPoshta.Core
             var result = _jsonLogic.GetJsonData<Document>("InternetDocument", "getDocumentList", properties);
             return result;
         }
+
+        public Document UpdateTTN(Document document)
+        {
+           return _jsonLogic.GetJsonRootData<Document>("InternetDocument", "update", document);
+        }
     }
 }

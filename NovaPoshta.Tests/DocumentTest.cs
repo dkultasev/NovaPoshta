@@ -80,5 +80,30 @@ namespace NovaPoshta.Tests
 
             Assert.AreEqual(result.IntDocNumber, ttn);
         }
+
+        [Test]
+        public void UpdateTTNTest()
+        {
+            var documentLogic = new DocumentLogic();
+            var ttn = "20450037372708";
+            var document = documentLogic.GetDocumentByTTN(ttn);
+
+            var cost = document.Cost;
+            var rnd = new Random();
+            var randomPrice = rnd.Next(1, 1000);
+            if (cost == randomPrice) randomPrice = rnd.Next(1, 1000);
+
+            document.Cost = randomPrice;
+            document.DateTime = DateTime.Now;
+            document.PreferredDeliveryDate = null;
+            document.SendersPhone = "380934602822";
+            document.RecipientsPhone = "380934602823";
+
+            documentLogic.UpdateTTN(document);
+            var updatedDocument = documentLogic.GetDocumentByTTN(ttn);
+
+            Assert.AreEqual(updatedDocument.Cost, randomPrice);
+
+        }
     }
 }
