@@ -7,17 +7,17 @@ namespace NovaPoshta.Core
 {
     public class CityLogic
     {
-        private readonly JsonLogic _jsonLogic;
+        private readonly IJsonLogic _jsonLogic;
 
-        public CityLogic()
+        public CityLogic(IJsonLogic jsonLogic)
         {
-            _jsonLogic = new JsonLogic();
+            if (jsonLogic == null) throw new ArgumentNullException(nameof(jsonLogic));
+            _jsonLogic = jsonLogic;
         }
-
 
         public IEnumerable<City> GetAllCities()
         {
-            return _jsonLogic.GetJsonData<City>("Address", "getCities", new { });
+           return _jsonLogic.GetJsonData<City>("Address", "getCities", new { });
         }
 
         public IEnumerable<City> GetCityByRef(Guid cityRef)

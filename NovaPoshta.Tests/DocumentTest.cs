@@ -11,9 +11,9 @@ namespace NovaPoshta.Tests
         [Test]
         public void Test()
         {
-            var counterPartyLogic = new CounterPartyLogic();
+            var counterPartyLogic = new DictionaryLogic();
 
-            var cpaties = counterPartyLogic.GetCounterpartiesByCity(new Guid("8D5A980D-391C-11DD-90D9-001A92567626"));
+            var cpaties = counterPartyLogic.GetDictionary<Dictionary>("CargoTypes");
 
             int a = 0;
         }
@@ -21,9 +21,27 @@ namespace NovaPoshta.Tests
         [Test]
         public void CreateNewDocumentTest()
         {
+            var documentLogic = new DocumentLogic();
+            var document = CreateSimpleDoument();
+            var result = documentLogic.CreateInternetDocument(document);
+            Assert.Greater(result.CostOnSite, 1);
+        }
+
+        [Test]
+        public void CreateNewCashOnDeliveryDocumentTest()
+        {
+            var documentLogic = new DocumentLogic();
+            var document = CreateSimpleDoument();
+
+            var result = documentLogic.CreateInternetDocument(document);
+            Assert.Greater(result.CostOnSite, 1);
+        }
+
+        private static Document CreateSimpleDoument()
+        {
             var counterPartyLogic = new CounterPartyLogic();
             var cityLogic = new CityLogic();
-            var documentLogic = new DocumentLogic();
+            
             var senderCityRef = cityLogic.GetCityByName("Одесса").Ref;
             var senderRef = counterPartyLogic.GetSenderCounterpartyRef();
             var senderContact = counterPartyLogic.GetCounterpartyFirstContactWithEmail(senderRef).Ref;
@@ -67,8 +85,8 @@ namespace NovaPoshta.Tests
                 ContactRecipient = recipient.ContactPerson.data[0].Ref.Value,
                 RecipientsPhone = recipientPhone
             };
-            var result = documentLogic.CreateInternetDocument(document);
-            Assert.Greater(result.CostOnSite, 1);
+
+            return document;
         }
 
         [Test]

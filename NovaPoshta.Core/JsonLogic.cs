@@ -5,11 +5,10 @@ using RestSharp;
 
 namespace NovaPoshta.Core
 {
-    public class JsonLogic
+    public class JsonLogic : IJsonLogic
     {
         private readonly string _apiKey;
         public readonly string ApiUrl = "https://api.novaposhta.ua/v2.0/json/";
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public JsonLogic()
         {
@@ -25,13 +24,12 @@ namespace NovaPoshta.Core
         public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
-            if (result.errors == null || result.errors.Count <= 0) return result.data[0];
+            if (result.errors?.Count > 0)
+            {
+                throw new ArgumentException(result.errors);
+            }
 
-            var message = string.Join("\n", result.errors);
-            var e = new ArgumentException(message);
-
-            Logger.Error(e);
-            throw e;
+            return result.data[0];
         }
 
 
