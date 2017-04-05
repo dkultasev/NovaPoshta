@@ -7,7 +7,7 @@ namespace NovaPoshta.Tests
 {
     public class DictionaryTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic();
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new NovaPoshtaConfig().GetCfg().ApiKey);
 
         [Test]
         public void GetTypesOfPayersTest()

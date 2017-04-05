@@ -8,7 +8,7 @@ namespace NovaPoshta.Tests
 {
     public class CounterPartyTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic();
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new NovaPoshtaConfig().GetCfg().ApiKey);
 
         [Test]
         public void GetSenderContactPersonsByRefTest()

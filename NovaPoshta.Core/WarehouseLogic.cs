@@ -6,10 +6,12 @@ namespace NovaPoshta.Core
 {
     public class WarehouseLogic
     {
-        private readonly JsonLogic _jsonLogic;
-        public WarehouseLogic()
+        private readonly IJsonLogic _jsonLogic;
+
+        public WarehouseLogic(IJsonLogic jsonLogic)
         {
-            _jsonLogic = new JsonLogic();
+            if (jsonLogic == null) throw new ArgumentNullException(nameof(jsonLogic));
+            _jsonLogic = jsonLogic;
         }
         public IEnumerable<Warehouse> GetWarehousesByCity(Guid cityRef)
         {

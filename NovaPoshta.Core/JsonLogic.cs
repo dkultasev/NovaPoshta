@@ -9,20 +9,21 @@ namespace NovaPoshta.Core
         private readonly string _apiKey;
         public readonly string ApiUrl = "https://api.novaposhta.ua/v2.0/json/";
 
-        public JsonLogic()
+        public JsonLogic(string apiKey)
         {
-            _apiKey = new NovaPoshtaConfig().GetCfg().ApiKey;
+            if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
+            _apiKey = apiKey;
         }
 
         public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var result = new JsonLogic().GetObjectByRequest<T>(modelName, calledMethod, methodProperties);
+            var result = GetObjectByRequest<T>(modelName, calledMethod, methodProperties);
             return result[0].data;
         }
 
         public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
+            var result = GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
             if (result.errors?.Count > 0)
             {
                 throw new ArgumentException(string.Join("\n", result.errors));
