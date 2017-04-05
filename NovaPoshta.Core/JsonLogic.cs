@@ -26,7 +26,7 @@ namespace NovaPoshta.Core
             var result = new JsonLogic().GetObjectRootByRequest<T>(modelName, calledMethod, methodProperties);
             if (result.errors?.Count > 0)
             {
-                throw new ArgumentException(result.errors);
+                throw new ArgumentException(string.Join("\n", result.errors));
             }
 
             return result.data[0];

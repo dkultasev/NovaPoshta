@@ -8,10 +8,12 @@ namespace NovaPoshta.Tests
 {
     internal class DocumentTest
     {
+        private readonly IJsonLogic _jsonLogic = new JsonLogic();
+
         [Test]
         public void Test()
         {
-            var counterPartyLogic = new DictionaryLogic();
+            var counterPartyLogic = new DictionaryLogic(_jsonLogic);
 
             var cpaties = counterPartyLogic.GetDictionary<Dictionary>("CargoTypes");
 
@@ -21,7 +23,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void CreateNewDocumentTest()
         {
-            var documentLogic = new DocumentLogic();
+            var documentLogic = new DocumentLogic(_jsonLogic);
             var document = CreateSimpleDoument();
             var result = documentLogic.CreateInternetDocument(document);
             Assert.Greater(result.CostOnSite, 1);
@@ -30,17 +32,17 @@ namespace NovaPoshta.Tests
         [Test]
         public void CreateNewCashOnDeliveryDocumentTest()
         {
-            var documentLogic = new DocumentLogic();
+            var documentLogic = new DocumentLogic(_jsonLogic);
             var document = CreateSimpleDoument();
 
             var result = documentLogic.CreateInternetDocument(document);
             Assert.Greater(result.CostOnSite, 1);
         }
 
-        private static Document CreateSimpleDoument()
+        private Document CreateSimpleDoument()
         {
-            var counterPartyLogic = new CounterPartyLogic();
-            var cityLogic = new CityLogic();
+            var counterPartyLogic = new CounterPartyLogic(_jsonLogic);
+            var cityLogic = new CityLogic(_jsonLogic);
             
             var senderCityRef = cityLogic.GetCityByName("Одесса").Ref;
             var senderRef = counterPartyLogic.GetSenderCounterpartyRef();
@@ -92,7 +94,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void GetDocumentByTTNTest()
         {
-            var documentLogic = new DocumentLogic();
+            var documentLogic = new DocumentLogic(_jsonLogic);
             var ttn = "20450037372708";
             var result = documentLogic.GetDocumentByTTN(ttn);
 
@@ -102,7 +104,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void UpdateTTNTest()
         {
-            var documentLogic = new DocumentLogic();
+            var documentLogic = new DocumentLogic(_jsonLogic);
             var ttn = "20450037372708";
             var document = documentLogic.GetDocumentByTTN(ttn);
 

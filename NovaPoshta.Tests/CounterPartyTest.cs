@@ -8,10 +8,12 @@ namespace NovaPoshta.Tests
 {
     public class CounterPartyTest
     {
+        private readonly IJsonLogic _jsonLogic = new JsonLogic();
+
         [Test]
         public void GetSenderContactPersonsByRefTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var result = cl.GetCounterpartyContactPersonsByCounterpartyRef(new Guid("361ce04b92c711e6a54a005056801333"));
             Assert.Greater(result.Count(), 0);
         }
@@ -19,7 +21,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void GetSenderRefTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var result = cl.GetSenderCounterpartyRef();
             Assert.AreEqual(result, new Guid("361ce04b92c711e6a54a005056801333"));
         }
@@ -27,7 +29,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void GetRecipientCounterPartyTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var result = cl.GetReciepentCounterParties();
             Assert.AreEqual(result.FirstOrDefault().OwnershipFormDescription, "Фізична особа");
         }
@@ -35,7 +37,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void GetCounterPartyContactPersonsTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var result = cl.GetCounterpartyContactPersonsByCounterpartyRef(new Guid("f5cb6305-37a8-11e6-a54a-005056801333")).Count();
             Assert.Greater(result, 10);
         }
@@ -43,7 +45,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void CreateCounterPartyTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var result = cl.CreateConterparty(new CounterParty()
             {
                 CityRef = new Guid("db5c88d7-391c-11dd-90d9-001a92567626"),
@@ -62,7 +64,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void UpdateCounterPartyTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var insertedCounterParty = cl.CreateConterparty(new CounterParty()
             {
                 CityRef = new Guid("db5c88d7-391c-11dd-90d9-001a92567626"),
@@ -87,7 +89,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void DeleteCounterPartyTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             var insertedCounterParty = cl.CreateConterparty(new CounterParty()
             {
                 CityRef = new Guid("db5c88d7-391c-11dd-90d9-001a92567626"),
@@ -111,7 +113,7 @@ namespace NovaPoshta.Tests
         [Test]
         public void DeleteNonExistingCounterPartyTest()
         {
-            var cl = new CounterPartyLogic();
+            var cl = new CounterPartyLogic(_jsonLogic);
             Assert.That(() => cl.DeleteConterparty(new Guid("db5c88d7-391c-11dd-90d9-001a92567626")),
             Throws.TypeOf<ArgumentException>());
         }

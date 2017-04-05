@@ -7,11 +7,13 @@ namespace NovaPoshta.Core
 {
     public class CounterPartyLogic
     {
-        private readonly JsonLogic _jsonLogic;
+        private readonly IJsonLogic _jsonLogic;
 
-        public CounterPartyLogic()
+
+        public CounterPartyLogic(IJsonLogic jsonLogic)
         {
-            _jsonLogic = new JsonLogic();
+            if (jsonLogic == null) throw new ArgumentNullException(nameof(jsonLogic));
+            _jsonLogic = jsonLogic;
         }
 
         public IEnumerable<CounterpartyContactPerson> GetCounterpartyContactPersonsByCounterpartyRef(Guid? counterPartyRef)

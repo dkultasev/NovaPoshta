@@ -9,11 +9,12 @@ namespace NovaPoshta.Core
 {
     public class DocumentLogic
     {
-        private readonly JsonLogic _jsonLogic;
+        private readonly IJsonLogic _jsonLogic;
 
-        public DocumentLogic()
+        public DocumentLogic(IJsonLogic jsonLogic)
         {
-            _jsonLogic = new JsonLogic();
+            if (jsonLogic == null) throw new ArgumentNullException(nameof(jsonLogic));
+            _jsonLogic = jsonLogic;
         }
         public Document CreateInternetDocument(Document doc)
         {

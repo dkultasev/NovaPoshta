@@ -4,7 +4,7 @@ using NLog;
 
 namespace NovaPoshta.Core
 {
-    class JsonLogicLogger : IJsonLogic
+    public class JsonLogicLogger : IJsonLogic
     {
         private readonly IJsonLogic _jsonLogic;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -30,7 +30,15 @@ namespace NovaPoshta.Core
 
         public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _jsonLogic.GetJsonRootData<T>(modelName, calledMethod, methodProperties);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                throw;
+            }
         }
     }
 }

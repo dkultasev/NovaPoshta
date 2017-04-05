@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiLogicException.cs" />
     <Compile Include="CityLogic.cs" />
     <Compile Include="CounterPartyLogic.cs" />
     <Compile Include="DictionaryLogic.cs" />
