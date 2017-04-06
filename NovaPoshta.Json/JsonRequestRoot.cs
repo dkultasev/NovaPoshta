@@ -1,4 +1,4 @@
-﻿namespace NovaPoshta.Core
+﻿namespace NovaPoshta.Json
 {
     public class JsonRequestRoot
     {

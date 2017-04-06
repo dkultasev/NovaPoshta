@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RestSharp;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Json
 {
     public class JsonLogic : IJsonLogic
     {

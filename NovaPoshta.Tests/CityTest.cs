@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NovaPoshta.Core;
+using NovaPoshta.Json;
 using NUnit.Framework;
 
 namespace NovaPoshta.Tests

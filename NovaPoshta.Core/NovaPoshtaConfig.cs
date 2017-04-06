@@ -15,7 +15,7 @@ namespace NovaPoshta.Core
             try
             {
                 using (var r = new StreamReader(path))
-                {
+                {   
                     var json = r.ReadToEnd();
                     return JsonConvert.DeserializeObject<NovaPoshtaConfig>(json);
                 }

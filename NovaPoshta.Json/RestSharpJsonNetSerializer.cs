@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp.Serializers;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Json
 {
     /// <summary>
     /// Default JSON serializer for request bodies

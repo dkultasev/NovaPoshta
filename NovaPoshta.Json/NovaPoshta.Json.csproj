@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27016B48-6C74-462B-9B35-77F47160BD19}</ProjectGuid>
+    <ProjectGuid>{B549E5A8-1B39-4B88-A721-04AC228B45D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NovaPoshta.Tests</RootNamespace>
-    <AssemblyName>NovaPoshta.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>NovaPoshta.Json</RootNamespace>
+    <AssemblyName>NovaPoshta.Json</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,8 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net451\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -44,32 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityTest.cs" />
-    <Compile Include="CounterPartyTest.cs" />
-    <Compile Include="DictionaryTest.cs" />
-    <Compile Include="DocumentTest.cs" />
+    <Compile Include="IJsonLogic.cs" />
+    <Compile Include="JsonLogic.cs" />
+    <Compile Include="JsonLogicLogger.cs" />
+    <Compile Include="JsonRequestRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WarehouseTest.cs" />
+    <Compile Include="RestSharpExtensionMethods.cs" />
+    <Compile Include="RestSharpJsonNetSerializer.cs" />
+    <Compile Include="RootObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NovaPoshta.Core\NovaPoshta.Core.csproj">
-      <Project>{ff2646ed-e486-43a0-8d38-f7e8e3ed94fc}</Project>
-      <Name>NovaPoshta.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NovaPoshta.Entity\NovaPoshta.Entity.csproj">
-      <Project>{5ad78eec-e5c7-40f6-adca-33cbef37e922}</Project>
-      <Name>NovaPoshta.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Json.csproj">
-      <Project>{b549e5a8-1b39-4b88-a721-04ac228b45d6}</Project>
-      <Name>NovaPoshta.Json</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

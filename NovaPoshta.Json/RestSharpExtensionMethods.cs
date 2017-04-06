@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using RestSharp;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Json
 {
     public static class RestSharpExtensionMethods
     {

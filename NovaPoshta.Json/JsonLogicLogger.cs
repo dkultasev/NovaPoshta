@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NLog;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Json
 {
     public class JsonLogicLogger : IJsonLogic
     {
