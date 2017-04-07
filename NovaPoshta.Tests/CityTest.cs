@@ -9,7 +9,7 @@ namespace NovaPoshta.Tests
 {
     internal class CityTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg().ApiKey);
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg());
 
 
         [Test]

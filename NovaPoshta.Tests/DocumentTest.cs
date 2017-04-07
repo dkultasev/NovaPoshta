@@ -11,7 +11,7 @@ namespace NovaPoshta.Tests
 {
     internal class DocumentTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg().ApiKey);
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg());
 
         [Test]
         public void CreateNewDocumentTest()

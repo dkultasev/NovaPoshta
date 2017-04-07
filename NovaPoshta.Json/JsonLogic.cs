@@ -7,15 +7,14 @@ namespace NovaPoshta.Json
     public class JsonLogic : IJsonLogic
     {
         private readonly IRestClient _client;
-        private readonly string _apiKey;
-        public readonly string ApiUrl = "https://api.novaposhta.ua/v2.0/json/";
+        private readonly NovaPoshtaConfig _config;
 
-        public JsonLogic(IRestClient client, string apiKey)
+        public JsonLogic(IRestClient client, NovaPoshtaConfig config)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
-            if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
+            if (config == null) throw new ArgumentNullException(nameof(config));
             _client = client;
-            _apiKey = apiKey;
+            _config = config;
         }
 
         public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
@@ -38,12 +37,12 @@ namespace NovaPoshta.Json
 
         private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            _client.BaseUrl = new Uri(ApiUrl); 
+            _client.BaseUrl = _config.ApiUrl; 
 
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
-                apiKey = _apiKey,
+                apiKey = _config.ApiKey,
                 modelName = modelName,
                 calledMethod = calledMethod,
                 methodProperties = methodProperties
@@ -57,12 +56,12 @@ namespace NovaPoshta.Json
 
         private RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            _client.BaseUrl = new Uri(ApiUrl);
+            _client.BaseUrl = _config.ApiUrl;
 
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
             {
-                apiKey = _apiKey,
+                apiKey = _config.ApiKey,
                 modelName = modelName,
                 calledMethod = calledMethod,
                 methodProperties = methodProperties

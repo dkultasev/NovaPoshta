@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Json
 {
     public class NovaPoshtaConfig
     {
