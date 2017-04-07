@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Entity
 {
     public class Document
     {
@@ -77,5 +78,6 @@ namespace NovaPoshta.Core
         public string StatePayName { get; set; }
         public string BackwardDeliveryCargoType { get; set; }
         public double VolumeGeneral { get; set; }
+        public List<BackwardDeliveryData> BackwardDeliveryData { get; set; }
         }
 }

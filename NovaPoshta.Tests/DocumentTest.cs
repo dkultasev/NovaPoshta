@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NovaPoshta.Core;
 using NovaPoshta.Entity;
@@ -10,16 +11,6 @@ namespace NovaPoshta.Tests
     internal class DocumentTest
     {
         private readonly IJsonLogic _jsonLogic = new JsonLogic(new NovaPoshtaConfig().GetCfg().ApiKey);
-
-        [Test]
-        public void Test()
-        {
-            var counterPartyLogic = new DictionaryLogic(_jsonLogic);
-
-            var cpaties = counterPartyLogic.GetDictionary<Dictionary>("CargoTypes");
-
-            int a = 0;
-        }
 
         [Test]
         public void CreateNewDocumentTest()
@@ -36,6 +27,17 @@ namespace NovaPoshta.Tests
             var documentLogic = new DocumentLogic(_jsonLogic);
             var document = CreateSimpleDoument();
 
+
+            var record = new BackwardDeliveryData()
+            {
+                PayerType = "Recipient",
+                CargoType = "Money",
+                RedeliveryString = document.Cost.ToString()
+            };
+
+
+            document.BackwardDeliveryData = new List<BackwardDeliveryData> {record};
+
             var result = documentLogic.CreateInternetDocument(document);
             Assert.Greater(result.CostOnSite, 1);
         }
@@ -44,7 +46,7 @@ namespace NovaPoshta.Tests
         {
             var counterPartyLogic = new CounterPartyLogic(_jsonLogic);
             var cityLogic = new CityLogic(_jsonLogic);
-            
+
             var senderCityRef = cityLogic.GetCityByName("Одесса").Ref;
             var senderRef = counterPartyLogic.GetSenderCounterpartyRef();
             var senderContact = counterPartyLogic.GetCounterpartyFirstContactWithEmail(senderRef).Ref;

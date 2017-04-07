@@ -49,7 +49,6 @@ namespace NovaPoshta.Json
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var result = client.Execute<List<RootObject<T>>>(request);
-            if (result.StatusCode.IsSuccessStatusCode()) return result.Data;
             return result.Data;
         }
 
