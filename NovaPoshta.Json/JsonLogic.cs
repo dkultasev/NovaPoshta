@@ -6,12 +6,15 @@ namespace NovaPoshta.Json
 {
     public class JsonLogic : IJsonLogic
     {
+        private readonly IRestClient _client;
         private readonly string _apiKey;
         public readonly string ApiUrl = "https://api.novaposhta.ua/v2.0/json/";
 
-        public JsonLogic(string apiKey)
+        public JsonLogic(IRestClient client, string apiKey)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
+            _client = client;
             _apiKey = apiKey;
         }
 
@@ -35,7 +38,7 @@ namespace NovaPoshta.Json
 
         private IEnumerable<RootObject<T>> GetObjectByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var client = new RestClient(ApiUrl);
+            _client.BaseUrl = new Uri(ApiUrl); 
 
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
@@ -48,13 +51,13 @@ namespace NovaPoshta.Json
             request.JsonSerializer = new RestSharpJsonNetSerializer("yyyy-MM-dd HH:mm:ss");
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            var result = client.Execute<List<RootObject<T>>>(request);
+            var result = _client.Execute<List<RootObject<T>>>(request);
             return result.Data;
         }
 
         private RootObject<T> GetObjectRootByRequest<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            var client = new RestClient(ApiUrl);
+            _client.BaseUrl = new Uri(ApiUrl);
 
             var request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             var jqr = new JsonRequestRoot()
@@ -68,7 +71,7 @@ namespace NovaPoshta.Json
             request.JsonSerializer = new RestSharpJsonNetSerializer("yyyy-MM-dd HH:mm:ss");
             request.AddBody(jqr);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            var result = client.Execute<RootObject<T>>(request).Data;
+            var result = _client.Execute<RootObject<T>>(request).Data;
             return result;
         }
 

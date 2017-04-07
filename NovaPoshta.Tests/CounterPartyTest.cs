@@ -4,12 +4,13 @@ using NovaPoshta.Core;
 using NovaPoshta.Entity;
 using NovaPoshta.Json;
 using NUnit.Framework;
+using RestSharp;
 
 namespace NovaPoshta.Tests
 {
     public class CounterPartyTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new NovaPoshtaConfig().GetCfg().ApiKey);
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg().ApiKey);
 
         [Test]
         public void GetSenderContactPersonsByRefTest()

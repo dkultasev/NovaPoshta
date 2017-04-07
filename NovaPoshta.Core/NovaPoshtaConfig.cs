@@ -8,6 +8,7 @@ namespace NovaPoshta.Core
     public class NovaPoshtaConfig
     {
         public string ApiKey { get; set; }
+        public Uri ApiUrl { get; set; }
 
         public NovaPoshtaConfig GetCfg()
         {

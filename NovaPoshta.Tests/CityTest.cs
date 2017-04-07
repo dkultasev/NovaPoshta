@@ -3,12 +3,14 @@ using System.Linq;
 using NovaPoshta.Core;
 using NovaPoshta.Json;
 using NUnit.Framework;
+using RestSharp;
 
 namespace NovaPoshta.Tests
 {
     internal class CityTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new NovaPoshtaConfig().GetCfg().ApiKey);
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg().ApiKey);
+
 
         [Test]
         public void GetAllCitiesTest()
