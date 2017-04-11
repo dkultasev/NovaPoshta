@@ -61,9 +61,9 @@
       <Project>{ff2646ed-e486-43a0-8d38-f7e8e3ed94fc}</Project>
       <Name>NovaPoshta.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Json.csproj">
+    <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Client.csproj">
       <Project>{b549e5a8-1b39-4b88-a721-04ac228b45d6}</Project>
-      <Name>NovaPoshta.Json</Name>
+      <Name>NovaPoshta.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
