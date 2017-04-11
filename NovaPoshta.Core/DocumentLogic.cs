@@ -17,7 +17,7 @@ namespace NovaPoshta.Core
         }
         public Document CreateInternetDocument(Document doc)
         {
-            return _jsonLogic.GetSingleObject<Document>("InternetDocument", "save", doc);
+            return _jsonLogic.ModifyObject<Document>("InternetDocument", "save", doc);
         }
 
         public Document GetDocumentByTTN(string ttn)
@@ -34,7 +34,7 @@ namespace NovaPoshta.Core
 
         public Document UpdateTTN(Document document)
         {
-           return _jsonLogic.GetSingleObject<Document>("InternetDocument", "update", document);
+           return _jsonLogic.ModifyObject<Document>("InternetDocument", "update", document);
         }
     }
 }

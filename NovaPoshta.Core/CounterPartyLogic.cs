@@ -70,7 +70,7 @@ namespace NovaPoshta.Core
         {
             counterparty.CounterpartyType = "PrivatePerson";
             counterparty.CounterpartyProperty = "Recipient";
-            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "save",
+            var result = _jsonLogic.ModifyObject<CounterParty>("Counterparty", "save",
                 counterparty);
             return result;
         }
@@ -78,13 +78,13 @@ namespace NovaPoshta.Core
         {
             counterparty.CounterpartyType = "PrivatePerson";
             counterparty.CounterpartyProperty = "Recipient";
-            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "update",
+            var result = _jsonLogic.ModifyObject<CounterParty>("Counterparty", "update",
                 counterparty);
             return result;
         }
         public CounterParty DeleteConterparty(Guid counterPartyRef)
         {
-            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "delete",
+            var result = _jsonLogic.ModifyObject<CounterParty>("Counterparty", "delete",
                 new {Ref = counterPartyRef });
             return result;
         }

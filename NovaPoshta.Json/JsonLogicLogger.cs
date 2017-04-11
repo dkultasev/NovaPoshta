@@ -28,11 +28,11 @@ namespace NovaPoshta.Json
             }
         }
 
-        public T GetSingleObject<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public T ModifyObject<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             try
             {
-                return _jsonLogic.GetSingleObject<T>(modelName, calledMethod, methodProperties);
+                return _jsonLogic.ModifyObject<T>(modelName, calledMethod, methodProperties);
             }
             catch (Exception e)
             {

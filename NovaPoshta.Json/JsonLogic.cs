@@ -24,7 +24,7 @@ namespace NovaPoshta.Json
             return result.Data[0].data;
         }
 
-        public T GetSingleObject<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public T ModifyObject<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
 
             RootObject<T> result = _client.Execute<RootObject<T>>(PrepareRequest(modelName, calledMethod, methodProperties)).Data;
