@@ -30,7 +30,7 @@ namespace NovaPoshta.Json
             RootObject<T> result = _client.Execute<RootObject<T>>(PrepareRequest(modelName, calledMethod, methodProperties)).Data;
             if (result.errors?.Count > 0)
             {
-                throw new ArgumentException(string.Join("\n", result.errors));
+                throw new ResponseException(result.errors.Select(x => x.ToString()).ToList());
             }
 
             return result.data[0];

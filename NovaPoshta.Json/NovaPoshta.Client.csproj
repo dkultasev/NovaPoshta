@@ -58,6 +58,7 @@
     <Compile Include="JsonRequestRoot.cs" />
     <Compile Include="NovaPoshtaConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseException.cs" />
     <Compile Include="RestSharpExtensionMethods.cs" />
     <Compile Include="RestSharpJsonNetSerializer.cs" />
     <Compile Include="RootObject.cs" />

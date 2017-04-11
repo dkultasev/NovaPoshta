@@ -116,8 +116,17 @@ namespace NovaPoshta.Tests
         public void DeleteNonExistingCounterPartyTest()
         {
             var cl = new CounterPartyLogic(_jsonLogic);
-            Assert.That(() => cl.DeleteConterparty(new Guid("db5c88d7-391c-11dd-90d9-001a92567626")),
-            Throws.TypeOf<ArgumentException>());
+
+            try
+            {
+                cl.DeleteConterparty(new Guid("db5c88d7-391c-11dd-90d9-001a92567626"));
+                Assert.Fail();
+            }
+            catch (ResponseException e)
+            {
+                Assert.AreEqual(e.Errors[0], "Counterparty not found");
+            }
+
         }
 
     }
