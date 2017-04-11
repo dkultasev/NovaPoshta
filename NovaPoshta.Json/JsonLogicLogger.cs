@@ -15,11 +15,11 @@ namespace NovaPoshta.Json
             _jsonLogic = jsonLogic;
         }
 
-        public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public IEnumerable<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             try
             {
-                return _jsonLogic.GetJsonData<T>(modelName, calledMethod, methodProperties);
+                return _jsonLogic.GetListOfObjects<T>(modelName, calledMethod, methodProperties);
             }
             catch (Exception e)
             {
@@ -28,11 +28,11 @@ namespace NovaPoshta.Json
             }
         }
 
-        public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public T GetSingleObject<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             try
             {
-                return _jsonLogic.GetJsonRootData<T>(modelName, calledMethod, methodProperties);
+                return _jsonLogic.GetSingleObject<T>(modelName, calledMethod, methodProperties);
             }
             catch (Exception e)
             {

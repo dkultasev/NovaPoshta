@@ -4,7 +4,7 @@ namespace NovaPoshta.Json
 {
     public interface IJsonLogic
     {
-        IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties);
-        T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties);
+        IEnumerable<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties);
+        T GetSingleObject<T>(string modelName, string calledMethod, dynamic methodProperties);
     }
 }

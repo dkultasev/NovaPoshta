@@ -18,13 +18,13 @@ namespace NovaPoshta.Json
             _config = config;
         }
 
-        public IEnumerable<T> GetJsonData<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public IEnumerable<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             IRestResponse<List<RootObject<T>>> result = _client.Execute<List<RootObject<T>>>(PrepareRequest(modelName, calledMethod, methodProperties));
             return result.Data[0].data;
         }
 
-        public T GetJsonRootData<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public T GetSingleObject<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
 
             RootObject<T> result = _client.Execute<RootObject<T>>(PrepareRequest(modelName, calledMethod, methodProperties)).Data;

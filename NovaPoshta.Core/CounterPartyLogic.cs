@@ -19,7 +19,7 @@ namespace NovaPoshta.Core
 
         public IEnumerable<CounterpartyContactPerson> GetCounterpartyContactPersonsByCounterpartyRef(Guid? counterPartyRef)
         {
-            var contacts = _jsonLogic.GetJsonData<CounterpartyContactPerson>("Counterparty",
+            var contacts = _jsonLogic.GetListOfObjects<CounterpartyContactPerson>("Counterparty",
                 "getCounterpartyContactPersons",
                 new
                 {
@@ -37,7 +37,7 @@ namespace NovaPoshta.Core
 
         public Guid? GetSenderCounterpartyRef()
         {
-            var counterParty = _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
+            var counterParty = _jsonLogic.GetListOfObjects<CounterParty>("Counterparty", "getCounterparties",
                 new
                 {
                     CounterpartyProperty = "Sender",
@@ -48,7 +48,7 @@ namespace NovaPoshta.Core
 
         public IEnumerable<CounterParty> GetCounterpartiesByCity(Guid cityRef)
         {
-            return _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
+            return _jsonLogic.GetListOfObjects<CounterParty>("Counterparty", "getCounterparties",
                 new
                 {
                     CounterpartyProperty = "Recipient",
@@ -62,7 +62,7 @@ namespace NovaPoshta.Core
                 prop = new { CounterpartyProperty = "Recipient", Page = page };
             else prop = new { CounterpartyProperty = "Recipient", Ref = reciepentGuid, Page = page };
 
-            return _jsonLogic.GetJsonData<CounterParty>("Counterparty", "getCounterparties",
+            return _jsonLogic.GetListOfObjects<CounterParty>("Counterparty", "getCounterparties",
                 prop);
         }
 
@@ -70,7 +70,7 @@ namespace NovaPoshta.Core
         {
             counterparty.CounterpartyType = "PrivatePerson";
             counterparty.CounterpartyProperty = "Recipient";
-            var result = _jsonLogic.GetJsonRootData<CounterParty>("Counterparty", "save",
+            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "save",
                 counterparty);
             return result;
         }
@@ -78,13 +78,13 @@ namespace NovaPoshta.Core
         {
             counterparty.CounterpartyType = "PrivatePerson";
             counterparty.CounterpartyProperty = "Recipient";
-            var result = _jsonLogic.GetJsonRootData<CounterParty>("Counterparty", "update",
+            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "update",
                 counterparty);
             return result;
         }
         public CounterParty DeleteConterparty(Guid counterPartyRef)
         {
-            var result = _jsonLogic.GetJsonRootData<CounterParty>("Counterparty", "delete",
+            var result = _jsonLogic.GetSingleObject<CounterParty>("Counterparty", "delete",
                 new {Ref = counterPartyRef });
             return result;
         }
