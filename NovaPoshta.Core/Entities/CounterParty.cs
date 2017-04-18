@@ -21,12 +21,8 @@ namespace NovaPoshta.Core
         public string Phones { get; set; }
         public string FullName { get; set; }
         public string CounterpartyProperty { get; set; }
-
-        public List<ContactPerson> CounterpartyContactPersons => ContactPerson != null ? ContactPerson.data : new List<ContactPerson>();
-
-        public RootObject<ContactPerson> ContactPerson { get; set; }
-
         public string Phone { get; set; }
         public string Email { get; set; }
+        public RootObject<ContactPerson> ContactPerson { get; set; }
     }
 }
