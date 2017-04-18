@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NovaPoshta.Core;
+using NovaPoshta.Core.Entities;
 using NovaPoshta.Json;
 using NUnit.Framework;
 using RestSharp;

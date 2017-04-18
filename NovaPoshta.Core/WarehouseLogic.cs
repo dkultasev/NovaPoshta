@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NovaPoshta.Core.Entities;
 using NovaPoshta.Json;
 
 namespace NovaPoshta.Core

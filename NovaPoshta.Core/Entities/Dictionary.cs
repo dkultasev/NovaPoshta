@@ -1,4 +1,4 @@
-﻿namespace NovaPoshta.Core
+﻿namespace NovaPoshta.Core.Entities
 {
     public class Dictionary 
     {

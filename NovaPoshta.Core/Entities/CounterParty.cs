@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace NovaPoshta.Core
+namespace NovaPoshta.Core.Entities
 {
     public class CounterParty
     {
