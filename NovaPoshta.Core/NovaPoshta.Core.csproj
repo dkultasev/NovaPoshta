@@ -42,20 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiLogicException.cs" />
-    <Compile Include="BackwardDeliveryData.cs" />
-    <Compile Include="City.cs" />
+    <Compile Include="Entities\BackwardDeliveryData.cs" />
+    <Compile Include="Entities\City.cs" />
     <Compile Include="CityLogic.cs" />
-    <Compile Include="ContactPerson.cs" />
-    <Compile Include="CounterParty.cs" />
+    <Compile Include="Entities\ContactPerson.cs" />
+    <Compile Include="Entities\CounterParty.cs" />
     <Compile Include="CounterPartyLogic.cs" />
-    <Compile Include="Dictionary.cs" />
+    <Compile Include="Entities\Dictionary.cs" />
     <Compile Include="DictionaryLogic.cs" />
-    <Compile Include="Document.cs" />
+    <Compile Include="Entities\Document.cs" />
     <Compile Include="DocumentLogic.cs" />
-    <Compile Include="PackList.cs" />
+    <Compile Include="Entities\PackList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RootObject.cs" />
-    <Compile Include="Warehouse.cs" />
+    <Compile Include="Entities\RootObject.cs" />
+    <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="WarehouseLogic.cs" />
   </ItemGroup>
   <ItemGroup>
