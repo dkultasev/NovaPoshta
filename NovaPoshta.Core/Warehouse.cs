@@ -1,5 +1,6 @@
 ﻿using System;
-namespace NovaPoshta.Entity
+
+namespace NovaPoshta.Core
 { 
         public class Warehouse
         {

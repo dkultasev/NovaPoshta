@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NovaPoshta.Entity
+namespace NovaPoshta.Core
 {
     public class RootObject<T>
     {

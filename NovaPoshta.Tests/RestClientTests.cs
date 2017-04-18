@@ -2,7 +2,6 @@
 using System.Net;
 using Moq;
 using NovaPoshta.Core;
-using NovaPoshta.Entity;
 using NovaPoshta.Json;
 using NUnit.Framework;
 using RestSharp;

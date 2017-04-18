@@ -42,11 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiLogicException.cs" />
+    <Compile Include="BackwardDeliveryData.cs" />
+    <Compile Include="City.cs" />
     <Compile Include="CityLogic.cs" />
+    <Compile Include="ContactPerson.cs" />
+    <Compile Include="CounterParty.cs" />
     <Compile Include="CounterPartyLogic.cs" />
+    <Compile Include="Dictionary.cs" />
     <Compile Include="DictionaryLogic.cs" />
+    <Compile Include="Document.cs" />
     <Compile Include="DocumentLogic.cs" />
+    <Compile Include="PackList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RootObject.cs" />
+    <Compile Include="Warehouse.cs" />
     <Compile Include="WarehouseLogic.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +68,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NovaPoshta.Entity\NovaPoshta.Entity.csproj">
-      <Project>{5ad78eec-e5c7-40f6-adca-33cbef37e922}</Project>
-      <Name>NovaPoshta.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Client.csproj">
       <Project>{b549e5a8-1b39-4b88-a721-04ac228b45d6}</Project>
       <Name>NovaPoshta.Client</Name>
