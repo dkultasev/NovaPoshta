@@ -17,9 +17,9 @@ namespace NovaPoshta.Core
             _jsonLogic = jsonLogic;
         }
 
-        public IEnumerable<CounterpartyContactPerson> GetCounterpartyContactPersonsByCounterpartyRef(Guid? counterPartyRef)
+        public IEnumerable<ContactPerson> GetCounterpartyContactPersonsByCounterpartyRef(Guid? counterPartyRef)
         {
-            var contacts = _jsonLogic.GetListOfObjects<CounterpartyContactPerson>("Counterparty",
+            var contacts = _jsonLogic.GetListOfObjects<ContactPerson>("Counterparty",
                 "getCounterpartyContactPersons",
                 new
                 {
@@ -28,7 +28,7 @@ namespace NovaPoshta.Core
 
             return contacts;
         }
-        public CounterpartyContactPerson GetCounterpartyFirstContactWithEmail(Guid? counterPartyRef)
+        public ContactPerson GetCounterpartyFirstContactWithEmail(Guid? counterPartyRef)
         {
             var contact = GetCounterpartyContactPersonsByCounterpartyRef(counterPartyRef);
 

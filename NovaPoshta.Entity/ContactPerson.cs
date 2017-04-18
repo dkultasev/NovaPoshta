@@ -2,7 +2,7 @@
 
 namespace NovaPoshta.Entity
 {
-    public class CounterpartyContactPerson
+    public class ContactPerson
     {
         public string Description { get; set; }
         public Guid? Ref { get; set; }

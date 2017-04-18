@@ -22,9 +22,9 @@ namespace NovaPoshta.Entity
         public string FullName { get; set; }
         public string CounterpartyProperty { get; set; }
 
-        public List<CounterpartyContactPerson> CounterpartyContactPersons => ContactPerson != null ? ContactPerson.data : new List<CounterpartyContactPerson>();
+        public List<ContactPerson> CounterpartyContactPersons => ContactPerson != null ? ContactPerson.data : new List<ContactPerson>();
 
-        public RootObject<CounterpartyContactPerson> ContactPerson { get; set; }
+        public RootObject<ContactPerson> ContactPerson { get; set; }
 
         public string Phone { get; set; }
         public string Email { get; set; }

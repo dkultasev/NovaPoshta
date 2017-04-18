@@ -43,7 +43,7 @@
     <Compile Include="BackwardDeliveryData.cs" />
     <Compile Include="City.cs" />
     <Compile Include="CounterParty.cs" />
-    <Compile Include="CounterpartyContactPerson.cs" />
+    <Compile Include="ContactPerson.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="PackList.cs" />
