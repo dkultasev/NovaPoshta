@@ -17,7 +17,7 @@ namespace NovaPoshta.Core
 
         public IEnumerable<T> GetDictionary<T>(string dictionary, dynamic param = null)
         {
-            return _jsonLogic.GetListOfObjects<T>("Common", "get" + dictionary, param);
+            return _jsonLogic.GetListOfObjects<T>("Common", "get" + dictionary, param).data;
         }
 
         public IEnumerable<PackList> GetPackList(PackList param = null)

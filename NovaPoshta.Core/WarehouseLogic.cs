@@ -17,7 +17,7 @@ namespace NovaPoshta.Core
         public IEnumerable<Warehouse> GetWarehousesByCity(Guid cityRef)
         {
             return _jsonLogic.GetListOfObjects<Warehouse>("AddressGeneral", "getWarehouses",
-             new { CityRef = cityRef });
+             new { CityRef = cityRef }).data;
         }
     }
 }

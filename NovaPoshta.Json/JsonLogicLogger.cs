@@ -15,7 +15,7 @@ namespace NovaPoshta.Json
             _jsonLogic = jsonLogic;
         }
 
-        public IEnumerable<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public RootObject<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
             try
             {

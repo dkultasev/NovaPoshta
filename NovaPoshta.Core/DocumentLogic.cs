@@ -28,7 +28,7 @@ namespace NovaPoshta.Core
 
         private IEnumerable<Document> GetDocuments(dynamic properties)
         {
-            var result = _jsonLogic.GetListOfObjects<Document>("InternetDocument", "getDocumentList", properties);
+            var result = _jsonLogic.GetListOfObjects<Document>("InternetDocument", "getDocumentList", properties).data;
             return result;
         }
 

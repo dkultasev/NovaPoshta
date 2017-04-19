@@ -26,7 +26,7 @@ namespace NovaPoshta.Core
                     Ref = counterPartyRef.ToString()
                 });
 
-            return contacts;
+            return contacts.data;
         }
         public ContactPerson GetCounterpartyFirstContactWithEmail(Guid? counterPartyRef)
         {
@@ -43,7 +43,7 @@ namespace NovaPoshta.Core
                     CounterpartyProperty = "Sender",
                     Page = 1
                 });
-            return counterParty.FirstOrDefault()?.Ref;
+            return counterParty.data.FirstOrDefault()?.Ref;
         }
 
         public IEnumerable<CounterParty> GetCounterpartiesByCity(Guid cityRef)
@@ -53,7 +53,7 @@ namespace NovaPoshta.Core
                 {
                     CounterpartyProperty = "Recipient",
                     CityRef = cityRef.ToString()
-                });
+                }).data;
         }
         public IEnumerable<CounterParty> GetReciepentCounterParties(Guid? reciepentGuid = null, int page = 1)
         {
@@ -63,7 +63,7 @@ namespace NovaPoshta.Core
             else prop = new { CounterpartyProperty = "Recipient", Ref = reciepentGuid, Page = page };
 
             return _jsonLogic.GetListOfObjects<CounterParty>("Counterparty", "getCounterparties",
-                prop);
+                prop).data;
         }
 
         public CounterParty CreateConterparty(CounterParty counterparty)

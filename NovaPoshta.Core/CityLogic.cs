@@ -18,16 +18,16 @@ namespace NovaPoshta.Core
 
         public IEnumerable<City> GetAllCities()
         {
-           return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new { });
+           return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new { }).data;
         }
 
         public IEnumerable<City> GetCityByRef(Guid cityRef)
         {
-            return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new {Ref = cityRef});
+            return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new {Ref = cityRef}).data;
         }
         public City GetCityByName(string cityName)
         {
-            return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new { FindByString = cityName }).FirstOrDefault();
+            return _jsonLogic.GetListOfObjects<City>("Address", "getCities", new { FindByString = cityName }).data.FirstOrDefault();
         }
     }
 }

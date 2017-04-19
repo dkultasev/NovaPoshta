@@ -18,16 +18,17 @@ namespace NovaPoshta.Json
             _config = config;
         }
 
-        public IEnumerable<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
+        public RootObject<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-            IRestResponse<List<RootObject<T>>> result = _client.Execute<List<RootObject<T>>>(PrepareRequest(modelName, calledMethod, methodProperties));
-            return result.Data[0].data;
+            var request = PrepareRequest(modelName, calledMethod, methodProperties);
+            IRestResponse<List<RootObject<T>>> result = _client.Execute<List<RootObject<T>>>(request);
+            return result.Data[0];
         }
 
         public T ModifyObject<T>(string modelName, string calledMethod, dynamic methodProperties)
         {
-
-            RootObject<T> result = _client.Execute<RootObject<T>>(PrepareRequest(modelName, calledMethod, methodProperties)).Data;
+            var request = PrepareRequest(modelName, calledMethod, methodProperties);
+            RootObject<T> result = _client.Execute<RootObject<T>>(request).Data;
             if (result.errors?.Count > 0)
             {
                 throw new ResponseException(result.errors.Select(x => x.ToString()).ToList());
