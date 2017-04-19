@@ -57,10 +57,7 @@ namespace NovaPoshta.Core
         }
         public IEnumerable<CounterParty> GetReciepentCounterParties(Guid? reciepentGuid = null, int page = 1)
         {
-            dynamic prop;
-            if (reciepentGuid == null)
-                prop = new { CounterpartyProperty = "Recipient", Page = page };
-            else prop = new { CounterpartyProperty = "Recipient", Ref = reciepentGuid, Page = page };
+            dynamic prop = new { CounterpartyProperty = "Recipient", Ref = reciepentGuid, Page = page };
 
             return _jsonLogic.GetListOfObjects<CounterParty>("Counterparty", "getCounterparties",
                 prop).data;

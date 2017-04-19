@@ -26,6 +26,27 @@ namespace NovaPoshta.Core
             return GetDocuments(properties).FirstOrDefault();
         }
 
+        public IEnumerable<Document> GetDocumentsByDate(DateTime dateFrom, DateTime? dateTo = null)
+        {
+            dynamic prop;
+            if (dateTo.HasValue)
+            {
+                prop = new
+                {
+                    DateTimeFrom = dateFrom.ToString("dd.MM.yyyy"),
+                    DateTimeTo = dateTo.Value.ToString("dd.MM.yyyy")
+                };
+            }
+            else
+            {
+                prop = new
+                {
+                    DateTime = dateFrom.ToString("dd.MM.yyyy")
+                };
+            }
+            return GetDocuments(prop);
+        }
+
         private IEnumerable<Document> GetDocuments(dynamic properties)
         {
             var result = _jsonLogic.GetListOfObjects<Document>("InternetDocument", "getDocumentList", properties).data;

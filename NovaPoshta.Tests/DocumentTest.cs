@@ -127,7 +127,14 @@ namespace NovaPoshta.Tests
             var updatedDocument = documentLogic.GetDocumentByTTN(ttn);
 
             Assert.AreEqual(updatedDocument.Cost, randomPrice);
+        }
 
+        [Test]
+        public void GetListOfDocumentsByExactDate()
+        {
+            var documentLogic = new DocumentLogic(_jsonLogic);
+            var result = documentLogic.GetDocumentsByDate(new DateTime(2017, 4, 19));
+            Assert.AreEqual(result.Count(),3);
         }
     }
 }
