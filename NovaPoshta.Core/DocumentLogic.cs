@@ -46,6 +46,11 @@ namespace NovaPoshta.Core
             }
             return GetDocuments(prop);
         }
+        public IEnumerable<Document> GetStatusDocuments(IEnumerable<Document> documents)
+        {
+            var result = _jsonLogic.GetListOfObjects<Document>("TrackingDocument", "getStatusDocuments", documents).data;
+            return result;
+        }
 
         private IEnumerable<Document> GetDocuments(dynamic properties)
         {

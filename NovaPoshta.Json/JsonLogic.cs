@@ -8,14 +8,14 @@ namespace NovaPoshta.Json
     public class JsonLogic : IJsonLogic
     {
         private readonly IRestClient _client;
-        private readonly NovaPoshtaConfig _config;
+        public NovaPoshtaConfig Config { get; private set; }
 
         public JsonLogic(IRestClient client, NovaPoshtaConfig config)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
             if (config == null) throw new ArgumentNullException(nameof(config));
             _client = client;
-            _config = config;
+            Config = config;
         }
 
         public RootObject<T> GetListOfObjects<T>(string modelName, string calledMethod, dynamic methodProperties)
@@ -41,14 +41,14 @@ namespace NovaPoshta.Json
         {
             var jqr = new JsonRequestRoot()
             {
-                apiKey = _config.ApiKey,
+                apiKey = Config.ApiKey,
                 modelName = modelName,
                 calledMethod = calledMethod,
                 methodProperties = methodProperties
 
             };
 
-            _client.BaseUrl = _config.ApiUrl;
+            _client.BaseUrl = Config.ApiUrl;
             IRestRequest request = new RestRequest(Method.POST) { RequestFormat = DataFormat.Json };
             request.JsonSerializer = new RestSharpJsonNetSerializer("yyyy-MM-dd HH:mm:ss");
             request.AddBody(jqr);

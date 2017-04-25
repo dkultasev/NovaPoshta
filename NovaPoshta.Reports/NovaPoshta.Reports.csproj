@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,15 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IReports.cs" />
+    <Compile Include="IReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports.cs" />
+    <Compile Include="Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NovaPoshta.Core\NovaPoshta.Core.csproj">
       <Project>{ff2646ed-e486-43a0-8d38-f7e8e3ed94fc}</Project>
       <Name>NovaPoshta.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Client.csproj">
+      <Project>{B549E5A8-1B39-4B88-A721-04AC228B45D6}</Project>
+      <Name>NovaPoshta.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

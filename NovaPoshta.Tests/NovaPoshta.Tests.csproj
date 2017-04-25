@@ -60,6 +60,7 @@
     <Compile Include="CounterPartyTest.cs" />
     <Compile Include="DictionaryTest.cs" />
     <Compile Include="DocumentTest.cs" />
+    <Compile Include="ReportTest.cs" />
     <Compile Include="RestClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarehouseTest.cs" />
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Client.csproj">
       <Project>{b549e5a8-1b39-4b88-a721-04ac228b45d6}</Project>
       <Name>NovaPoshta.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NovaPoshta.Reports\NovaPoshta.Reports.csproj">
+      <Project>{07f37500-15c3-4115-bf79-91c77add8ee8}</Project>
+      <Name>NovaPoshta.Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
