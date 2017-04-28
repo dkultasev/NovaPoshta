@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovaPoshta.Client", "NovaPo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovaPoshta.Reports", "NovaPoshta.Reports\NovaPoshta.Reports.csproj", "{07F37500-15C3-4115-BF79-91C77ADD8EE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovaPoshta.EF", "NovaPoshta.EF\NovaPoshta.EF.csproj", "{A39E9BBA-E057-428D-B800-3A274CDD907F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{07F37500-15C3-4115-BF79-91C77ADD8EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07F37500-15C3-4115-BF79-91C77ADD8EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07F37500-15C3-4115-BF79-91C77ADD8EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39E9BBA-E057-428D-B800-3A274CDD907F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39E9BBA-E057-428D-B800-3A274CDD907F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39E9BBA-E057-428D-B800-3A274CDD907F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39E9BBA-E057-428D-B800-3A274CDD907F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
