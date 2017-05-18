@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IJsonLogic.cs" />
+    <Compile Include="INovaPoshtaConfig.cs" />
     <Compile Include="JsonLogic.cs" />
     <Compile Include="JsonLogicLogger.cs" />
     <Compile Include="JsonRequestRoot.cs" />

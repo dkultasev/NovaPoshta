@@ -10,7 +10,7 @@ namespace NovaPoshta.Tests
 {
     public class WarehouseTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg());
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new InitialSetup().Config);
 
         [Test]
         public void GetWarehouseByCityRefTest()

@@ -11,7 +11,7 @@ namespace NovaPoshta.Tests
 {
     internal class DocumentTest
     {
-        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new NovaPoshtaConfig().GetCfg());
+        private readonly IJsonLogic _jsonLogic = new JsonLogic(new RestClient(), new InitialSetup().Config);
 
         [Test]
         public void CreateNewDocumentTest()
@@ -136,5 +136,15 @@ namespace NovaPoshta.Tests
             var result = documentLogic.GetDocumentsByDate(new DateTime(2017, 4, 19));
             Assert.AreEqual(result.Count(),3);
         }
+
+        [Test]
+        public void GetListOfDocumentsByDateRange()
+        {
+            var documentLogic = new DocumentLogic(_jsonLogic);
+            var result = documentLogic.GetDocumentsByDate(new DateTime(2017, 4, 30), new DateTime(2017, 5, 16));
+            Assert.AreEqual(result.Count(),4);
+        }
+
+
     }
 }

@@ -1,3 +1,6 @@
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
+
 namespace NovaPoshta.EF
 {
     using System.Data.Entity;
@@ -8,6 +11,10 @@ namespace NovaPoshta.EF
             : base("name=NovaPoshtaContext")
         {
         }
+        public ObjectContext ObjectContext()
+        {
+            return (this as IObjectContextAdapter).ObjectContext;
+        }
 
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<City> Cities { get; set; }
@@ -16,9 +23,9 @@ namespace NovaPoshta.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Warehouse>()
-                        .HasRequired<City>(s => s.Cities)
+                        .HasRequired(s => s.Cities)
                         .WithMany(s => s.Warehouses)
-                        .HasForeignKey(s => s.FK_CityRef);
+                        .HasForeignKey(s => s.CityRef);
         }
     }
 }

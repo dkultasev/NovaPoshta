@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Data.Entity;
 using System.Linq;
 using Autofac;
 using NovaPoshta.Core;
 using NovaPoshta.EF;
 using NovaPoshta.Json;
+using System.Data.Linq;
+using System.Linq.Expressions;
 
 namespace ConsoleApp
 {
@@ -19,6 +24,8 @@ namespace ConsoleApp
             //AddCity();
             //AddWarehouse(GetCityGuid());
             EFTest();
+            Console.ReadLine();
+
         }
 
 
@@ -26,28 +33,39 @@ namespace ConsoleApp
         {
             using (var db = GetDb())
             {
-                var cities = db.Cities.First();
-                foreach (var w in cities.Warehouses)
-                {
-                    Console.WriteLine(w.Description);
-                }
+                string[] fullNames = { "Anne Williams", "John Fred Smith", "Sue Green" };
+
+                var query = db.Cities.Join(db.Warehouses, c => c.Ref, w => w.CityRef,
+                    (c, w) => new {CityName = c.Description, WarehouseName = w.Description}).OrderBy(c => c.CityName).ThenBy(w => w.WarehouseName);
+
+
+                foreach (var name in query)
+                    Console.WriteLine(name.CityName + " ---> " + name.WarehouseName);
+
             }
-            Console.ReadLine();
+        }
+
+        public static Expression<Func<City, bool>> HasWarehousesMoreThan4()
+        {
+            return p => p.Warehouses.Any() && p.Warehouses.Count > 4;
         }
 
         public static void AddWarehouse(Guid cityGuid)
         {
             using (var db = GetDb())
             {
-                db.Warehouses.Add(new Warehouse()
+                var city = db.Cities.Where(c => c.Ref.Equals(cityGuid)).First();
+                new Warehouse()
                 {
                     Ref = Guid.NewGuid(),
-                    FK_CityRef = cityGuid,
                     Description = new Random().Next() + "Warehouse",
                     DescriptionRu = new Random().Next() + "Warehouse",
                     Phone = "123",
-                    Number = new Random().Next()
-                });
+                    Number = new Random().Next(),
+                    City = city
+                };
+
+
                 db.SaveChanges();
             }
         }
@@ -67,7 +85,7 @@ namespace ConsoleApp
                 db.Cities.Add(new City()
                 {
                     Ref = Guid.NewGuid(),
-                    DescriptionRu = "Odessa",
+                    DescriptionRu = "Odessa2",
                     Area = Guid.NewGuid(),
                     CityId = 1,
                     Delivery1 = 1,
@@ -77,7 +95,7 @@ namespace ConsoleApp
                     Delivery5 = 1,
                     Delivery6 = 1,
                     Delivery7 = 1,
-                    Description = "Odessa"
+                    Description = "Odessa2"
                 });
                 db.SaveChanges();
             }

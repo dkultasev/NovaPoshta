@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /NovaPoshta.Core/cfg/novaposhta.json
+/NovaPoshta.Tests/cfg/novaposhta.json

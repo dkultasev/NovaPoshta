@@ -13,8 +13,8 @@ namespace NovaPoshta.EF
         public string Phone { get; set; }
         public Guid TypeOfWarehouse { get; set; }
         public int Number { get; set; }
-        public Guid FK_CityRef { get; set; }
-        [ForeignKey("FK_CityRef")]
+        public Guid CityRef { get; set; }
+        [ForeignKey("CityRef")]
         public City City { get; set; }
         public City Cities { get; set; }
     }
