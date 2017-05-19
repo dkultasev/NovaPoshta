@@ -21,6 +21,19 @@ namespace NovaPoshta.UnitTests
         }
 
         [Test]
+        public void Test_When_ResponseException_Is_Thrown_ErrorsList_Contains_Errors()
+        {
+            try
+            {
+                throw new ResponseException(new List<string>() {"1", "2"});
+            }
+            catch (ResponseException e)
+            {
+                e.Errors.Length.Should().Be(2);
+            }
+        }
+
+        [Test]
         public void Test_When_There_Are_Errors_Returned_Then_GetListOfObjects_Throw_Exception()
         {
             _clientMock.Setup(cl => cl.Execute<List<RootObject<object>>>(It.IsAny<IRestRequest>()))
