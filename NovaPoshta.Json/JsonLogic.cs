@@ -8,12 +8,13 @@ namespace NovaPoshta.Json
     public class JsonLogic : IJsonLogic
     {
         private readonly IRestClient _client;
-        public NovaPoshtaConfig Config { get; private set; }
+        public INovaPoshtaConfig Config { get; }
 
-        public JsonLogic(IRestClient client, NovaPoshtaConfig config)
+        public JsonLogic(IRestClient client, INovaPoshtaConfig config)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
             if (config == null) throw new ArgumentNullException(nameof(config));
+
             _client = client;
             Config = config;
         }

@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /NovaPoshta.Core/cfg/novaposhta.json
 /NovaPoshta.Tests/cfg/novaposhta.json
+/NovaPoshta.UnitTests/cfg/novaposhta.json

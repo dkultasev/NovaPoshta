@@ -31,7 +31,7 @@ namespace NovaPoshta.UnitTests
             {
                 var mockClient = new Mock<IRestClient>();
 
-                //yield return new TestCaseData(null, (NovaPoshtaConfig)new InitialSetup().GetCfg());
+                yield return new TestCaseData(null, new InitialSetup().Config);
                 yield return new TestCaseData(mockClient.Object, null);
             }
         }
