@@ -23,6 +23,11 @@ namespace NovaPoshta.Json
         {
             var request = PrepareRequest(modelName, calledMethod, methodProperties);
             IRestResponse<List<RootObject<T>>> result = _client.Execute<List<RootObject<T>>>(request);
+            if (result.Data[0]?.errors?.Count > 0)
+            {
+                throw new ResponseException(result.Data[0].errors.Select(x => x.ToString()).ToList());
+            }
+
             return result.Data[0];
         }
 

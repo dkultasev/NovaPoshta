@@ -10,7 +10,12 @@ namespace NovaPoshta.Reports
     public class Report : IReport
     {
         private readonly IJsonLogic _jsonLogic;
-            // = new JsonLogic(new RestClient(), (NovaPoshtaConfig)new InitialSetup().GetCfg());
+
+        public Report(IJsonLogic jsonLogic)
+        {
+            if (jsonLogic == null) throw new ArgumentNullException(nameof(jsonLogic));
+            _jsonLogic = jsonLogic;
+        }
 
         public IEnumerable<Document> GetUnreceivedDocuments(IEnumerable<Document> documents)
         {
