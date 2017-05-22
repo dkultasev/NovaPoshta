@@ -52,6 +52,30 @@ namespace NovaPoshta.UnitTests
         }
 
         [Test]
+        public void Test_That_Request_Has_Properly_Formatted_Date()
+        {
+            var properties = new
+            {
+                DateTimeToTest = new DateTime(2017, 4, 30)
+            };
+
+            var result = new JsonLogic(_clientMock.Object, _config).PrepareRequest("", "", properties);
+
+            result.Parameters[0].Value.ToString()
+                .Contains("\"DateTimeToTest\": \"2017-04-30 00:00:00\"")
+                .Should()
+                .Be(true);
+        }
+
+        [Test]
+        public void Test_That_Request_Is_Json_Format()
+        {
+            var result = new JsonLogic(_clientMock.Object, _config).PrepareRequest("", "", "");
+
+            result.RequestFormat.Should().Be(DataFormat.Json);
+        }
+
+        [Test]
         public void Test_When_There_Are_Errors_Returned_Then_ModifyObject_Throw_Exception()
         {
             _clientMock.Setup(cl => cl.Execute<RootObject<object>>(It.IsAny<IRestRequest>()))

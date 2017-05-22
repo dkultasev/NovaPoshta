@@ -52,6 +52,7 @@
     <Compile Include="DictionaryLogic.cs" />
     <Compile Include="Entities\Document.cs" />
     <Compile Include="DocumentLogic.cs" />
+    <Compile Include="Entities\Documents.cs" />
     <Compile Include="Entities\PackList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\RootObject.cs" />

@@ -80,6 +80,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NovaPoshta.EF\NovaPoshta.EF.csproj">
+      <Project>{A39E9BBA-E057-428D-B800-3A274CDD907F}</Project>
+      <Name>NovaPoshta.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NovaPoshta.Json\NovaPoshta.Client.csproj">
       <Project>{b549e5a8-1b39-4b88-a721-04ac228b45d6}</Project>
       <Name>NovaPoshta.Client</Name>

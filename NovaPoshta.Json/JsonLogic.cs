@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using RestSharp;
 
+[assembly: InternalsVisibleTo("NovaPoshta.UnitTests")]
 namespace NovaPoshta.Json
 {
     public class JsonLogic : IJsonLogic
@@ -43,7 +45,7 @@ namespace NovaPoshta.Json
             return result.data[0];
         }
 
-        private IRestRequest PrepareRequest(string modelName, string calledMethod, dynamic methodProperties)
+        internal IRestRequest PrepareRequest(string modelName, string calledMethod, dynamic methodProperties)
         {
             var jqr = new JsonRequestRoot()
             {
